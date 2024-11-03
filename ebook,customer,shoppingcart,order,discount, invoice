@@ -1,0 +1,221 @@
+#Ebook after modification
+  def __init___(self,title,author,publication_date,genre,price):
+     self.title=title
+   self.authot=author
+   self.publication_date=publication_date
+   self.genre=genre
+   self.price=price
+
+  def__str__(self):
+     return f"[self.title}by{self.author},Genre:{self.genre}, Price:{self.price:.2f}AED"
+
+class Catalog:
+
+  def__int__(self):
+    self.ebooks=[]
+  
+  def add_book(self,ebook):
+      self.ebooks.append(ebook)
+      print(f"Added'{ebook.title}' to catalog")
+
+  def modify_ebook(self,title, new_title=None, new_author=None, new_publication_date=None, new_genre=None,new_price=None):
+     for ebook in self.ebooks:
+        if ebook.title == title:
+           if new_title:
+               ebook.title = new_title
+           if new_author:
+               ebook.author = new_author
+           if new_publication_date:
+               ebook.publication_date = new_publication_date
+           if new_genre:
+               ebook.genre = new_genre
+           if new_price is not None:
+               ebookxprice = new_price
+           print(f"modified'{title}' in catalog')
+           return
+  print(f"ebook titled'{title}' not found in catalog")
+
+def remove_ebook(self,title):
+  for ebook in self.ebooks:
+       self.ebooks.remove(ebook)
+       print(f"removed'title}' from catalog")
+       return
+  print(f'ebook titled'{title}; not found in catalog")
+
+  def display_catalog(self):
+    print("catalog")
+    for ebook in self.ebooks:
+      print(ebook)
+    if not self.ebooks:
+        print("the cataglog is empty")
+
+catalog = Catalog()
+catalog.add_ebook(Ebiij("The power of Now","Eckhart tolle", "1997", "Self-help", 55.0))
+catalog.add_ebook(EBook("Untamed", "Glennon Doyle", "2020", "Memoir", 48.0))
+catalog.add_ebook(EBook("Atomic Habits", "James Clear", "2018", "Self-help", 60.0))
+catalog.add_ebook(EBook("Educated", "Tara Westover", "2018", "Memoir", 50.0))
+catalog.add_ebook(EBook("The Silent Patient", "Alex Michaelides", "2019", "Thriller", 45.0))
+
+print("/nInitial Catalog:")
+catalog.display_catalog()
+
+print("/nModifyig "Atomic Habits:")
+catalog.modify_ebook("Atomic Habits",new_title = "Atomic Habits (Updated)", new_price = 65.0)
+
+print("/nRemoving 'The Silent Paitient':")
+catalog.remove_ebook("The Silent Patient")
+
+print("/nCatalog After Modifications:")
+catalog.display_catalog()
+
+
+
+
+
+
+#Customer code after modifying it
+class Customer:
+  def__init__(self,name="Haya Alzaabi",contact_info = "haya@gmail.com", is_loyalty_member=True):
+     self.name=name
+     self.contact_info=contact_info
+     self. is_loyalty_member= is_loyalty_member
+     self.cart=[]
+
+  def get_name(self):
+    return self.name
+
+  def set_name(self,name):
+    self.name=name
+  
+  def get_contact_info(self):
+  return self.contact_info
+
+  def set_contact_info(self,contact_info):
+    self.contact_info=contact_info
+
+  def add_to_cart(self, ebook):
+    self.cart.append(ebook)
+
+  def remove_from_cart(self,title):
+    self.cart=[ebook for ebook in self.cart if ebook.get_title () ! title]
+
+  def__str__(self):
+     status = "Loyalty Member" if self.is_loyalty_member else "Regular Customer"
+     cart_details = "/n".join(str(ebook) for ebook in self.cart) or "No items in cart"
+     total_price = sum(ebookxget_price() for ebook in self.cart)
+     return f"Customer:{self.name},{status},Contact:{self.contact_info}]/n"/
+                      f"Cart items:/n{cart_details}/nTotal:{total_price} AED"
+
+
+
+Class Ebook:
+
+  def__init__(self,title,author,price):
+    self.title=title
+    self.author=author
+    self.price=price
+
+  def get_title(self):
+    return self.title
+
+  def get_price(self):
+    return self.price
+
+  def__str__(self(:
+    return f"EBook:{self.title}by{self.author},Price:{self.price}AED"
+
+ebook1=EBook("The Power of Now", "Eckhart Tolle", 55.0)
+ebook2 = EBook("Untamed","Glennon Deyle",48.0)
+
+customer=Customer()
+
+customer.add_to_cart(ebook1)
+customer.add_to_cart(ebook2)
+print("/nCustomer with items in cart:")
+print(customer)
+
+customer.set_name("New Name")
+customer.set_contact_info("haya22@gmail.com")
+print("/nCustomer after modification:")
+print(customer)
+
+customer.remove_from_cart("The power of Now")
+print("/nCustomer after removing an item from the cart:")
+print(customer)
+
+
+
+
+#shopping cart code after modification:
+
+classShoppingCart:
+
+def__init__(self0:
+  self.items = {"The power of Now":{"author":"Eckhart Tolle","Untamed":{"author":"Glennon Doyle", "price": 48.0,"quantity":0}
+
+def add_item(self,title,author,price,quantity=1):
+  if title in self.items:
+     self.items[title]["quantity"] += quantity
+  else:
+     self.items[title] = {"author":author, "price":price, "quantity":quantity}
+print(f"Added'{title}' to cart with quantity{quantity}.")
+
+def remove_item(self,title):
+  if title in self.items:
+  print(f"Removed'{title}' from cart")
+
+def update_quantity(self,title,quantity):
+  if title in self.items:
+      self.items[title]["quantity"] = max(0,quantity)
+      print(f"Updated '{title}' quantity to {quantity}."}
+
+def calculate_total(self0:
+   total = 0
+  for info in self.itemsvalues():
+    total += infp["price"] * info["quantity"]
+  return total
+
+def__str__(self):
+   cart_details = "" for title, info in self.items.items():
+  if info["quantity"] >0:
+   cart_details += f"{title} by{info['author']}, Price: {info['price']} AED, Quantity: {info['quantity']}/n'
+  total_price = self.calculate_total()
+ return f"Shopping Cart:/n{cart_details} Total Price:{total_price} AED"
+
+
+ cart= ShoppingCart()
+ cart.add_item("The power of Now", "Eckhart Tolle", 55.0, 2)
+ cart.add_item("Untamed","Glennon Doyle", 48.0,3)
+ cart.add_item("Atomic Habits","James Clear",60.0,1)
+
+ print("/nCart details after adding items:")
+ print(cart)
+
+ cart.update_quantity("The power of Now", 5)
+ print("/nCart details after updating quantity:")
+ print(cart)
+
+ cart.remove_item("Untamed")
+ print("/nCart details after removing an item:")
+ print(cart)
+
+
+
+
+
+                
+        
+    
+
+  
+    
+  
+     
+      
+
+              
+             
+           
+  
+
+   

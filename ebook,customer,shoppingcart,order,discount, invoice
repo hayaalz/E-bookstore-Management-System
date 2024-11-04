@@ -1,24 +1,25 @@
 #Ebook after modification
-  def __init___(self,title,author,publication_date,genre,price):
-     self.title=title
-   self.authot=author
-   self.publication_date=publication_date
-   self.genre=genre
-   self.price=price
+  class EBook:
+      def __init___(self,title,author,publication_date,genre,price):
+          self.title=title
+          self.authot=author
+          self.publication_date=publication_date
+          self.genre=genre
+          self.price=price
 
-  def__str__(self):
-     return f"[self.title}by{self.author},Genre:{self.genre}, Price:{self.price:.2f}AED"
+     def__str__(self):
+          return f"[self.title}by{self.author},Genre:{self.genre}, Price:{self.price:.2f}AED"
 
 class Catalog:
 
-  def__int__(self):
-    self.ebooks=[]
+     def__int__(self):
+           self.ebooks=[]
   
-  def add_book(self,ebook):
-      self.ebooks.append(ebook)
-      print(f"Added'{ebook.title}' to catalog")
+     def add_book(self,ebook):
+           self.ebooks.append(ebook)
+           print(f"Added'{ebook.title}' to catalog")
 
-  def modify_ebook(self,title, new_title=None, new_author=None, new_publication_date=None, new_genre=None,new_price=None):
+    def modify_ebook(self,title, new_title=None, new_author=None, new_publication_date=None, new_genre=None,new_price=None):
      for ebook in self.ebooks:
         if ebook.title == title:
            if new_title:
@@ -200,6 +201,156 @@ def__str__(self):
  print(cart)
 
 
+class Order:
+
+#this shows an order with an ID, date, and associated shopping cart.
+
+
+    def __init__(self):
+        self.order_id = "1234"
+        self.order_date = "31-10-2024"
+        self.cart = {
+            "The Power of Now": {"author": "Eckhart Tolle", "price": 55.0, "quantity": 2},
+            "Untamed": {"author": "Glennon Doyle", "price": 48.0, "quantity": 3}
+        }
+
+    def get_order_id(self) -> str:
+        #this will returns the order ID.
+        return self.order_id
+
+    def set_order_id(self, order_id: str) -> None:
+        #this will set a new order ID.
+        self.order_id = order_id
+
+    def get_order_date(self) -> str:
+        #this will return the order date.
+        return self.order_date
+
+    def set_order_date(self, order_date: str) -> None:
+        #this will sets a new order date.
+        self.order_date = order_date
+
+    def calculate_total(self) -> float:
+        #this calculates the total price of all items in the cart.
+        return sum(item["price"] * item["quantity"] for item in self.cart.values())
+
+    def __str__(self) -> str:
+        items_list = "\n".join(
+            f"{title} by {info['author']} - Price: {info['price']} AED, Quantity: {info['quantity']}"
+            for title, info in self.cart.items()
+        )
+        return (f"Order ID: {self.order_id}\n"
+                f"Date: {self.order_date}\n"
+                f"Items:\n{items_list}\n"
+                f"Total: {self.calculate_total()} AED")
+
+# this line will print the order
+order = Order()
+print(order)
+
+
+ class Discount:
+ #this shows a discount that can be applied to a total amount, like for loyalty members.
+
+    def __init__(self, total_amount: float):
+        self.total_amount = total_amount
+        self.discount_type = "Loyalty Discount"
+        self.discount_value = 0.1  # 10% discount
+
+    def apply_discount(self) -> float:
+        # Calculates the new total after applying the discount.
+        # It multiplies the total amount by (1 - discount percentage) to get the discounted amount.
+        return self.total_amount * (1 - self.discount_value)
+
+    # these are the getters where it returns the total amount before any discounts are applied.
+    def get_total_amount(self) -> float:
+        return self.total_amount
+        # Returns the total amount before any discounts are applied.
+
+    def get_discount_type(self) -> str:
+        return self.discount_type
+        # Returns the type of discount being used.
+
+    def get_discount_value(self) -> float:
+        return self.discount_value
+
+    # Setters, which updates the total amount to a new value.
+    def set_total_amount(self, amount: float) -> None:
+        self.total_amount = amount
+
+    def set_discount_value(self, value: float) -> None:
+        if 0 <= value <= 1:  # this ensures valid percentage
+            self.discount_value = value
+
+    def __str__(self) -> str:
+        # this creates a string showing the original total, the discount amount, and the new total after discount.
+
+        discounted_total = self.apply_discount()
+        return (f"Original Total: {self.total_amount:.2f} AED\n"
+                f"{self.discount_type}: -{self.total_amount * self.discount_value:.2f} AED\n"
+                f"Discounted Total: {discounted_total:.2f} AED")
+
+
+# discount will be printed
+discount = Discount(254.0)
+print(discount)
+
+# this is the updated discount value where it will be also printed
+discount.set_discount_value(0.15)  # this change to 15%
+print("\nAfter updating the discount value:")
+print(discount)
+
+
+class Invoice:
+
+#this shows an invoice with an ID, itemized total, discount, VAT, and final amount.
+
+
+    def __init__(self, invoice_id="4657", itemized_total=254.0, discount_amount=25.4, vat_rate=0.08):
+        self.invoice_id = invoice_id
+        self.itemized_total = itemized_total
+        self.discount_amount = discount_amount
+        self.vat_rate = vat_rate
+
+    # the getters is used to retrieve private attribute values
+    def get_invoice_id(self): return self.invoice_id #returns the invoice ID
+    def get_itemized_total(self): return self.itemized_total #returns the itemized total before discount
+    def get_discount_amount(self): return self.discount_amount #returns the discount amount
+    def get_vat_rate(self): return self.vat_rate#returns the VAT rate
+
+    # the setters are used to update private attribute values
+    def set_invoice_id(self, invoice_id): self.invoice_id = invoice_id #updates the invoice ID
+    def set_itemized_total(self, total): self.itemized_total = max(0, total) #updates itemized total, making sure it's not negative
+    def set_discount_amount(self, discount): self.discount_amount = min(max(0, discount), self.itemized_total) #this sets discount amount but ensures it doesn’t exceed the itemized total
+    def set_vat_rate(self, rate): self.vat_rate = min(max(0, rate), 1)#this sets VAT rate, ensuring it’s a percentage between 0 and 1
+
+    def calculate_final_total(self):
+        #this will calculate the final total after discount and VAT.
+        discounted_total = self.itemized_total - self.discount_amount
+        return discounted_total * (1 + self.vat_rate)
+
+    def __str__(self):
+        #this will return a formatted string with invoice details.
+        discounted_total = self.itemized_total - self.discount_amount
+        vat_amount = discounted_total * self.vat_rate
+        # this will return formatted string with details
+        return (f"Invoice ID: {self.invoice_id}\n"
+                f"Itemized Total: {self.itemized_total:.2f} AED\n"
+                f"Discount Applied: -{self.discount_amount:.2f} AED\n"
+                f"VAT ({self.vat_rate * 100}%): +{vat_amount:.2f} AED\n"
+                f"Final Total: {self.calculate_final_total():.2f} AED")
+
+
+# this creates an invoice with default values
+invoice = Invoice()
+print(invoice) # this prints the initial invoice details
+
+# and the will update values using setters
+invoice.set_itemized_total(300.0) #update itemized total to 300 AED
+invoice.set_discount_amount(30.0) #set discount amount to 30 AED
+invoice.set_vat_rate(0.1) #change VAT rate to 10%
+print("\nAfter updating values:") #print a message to show updates are applied
+print(invoice) #finally print the updated invoice details
 
 
 
